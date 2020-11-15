@@ -1,0 +1,35 @@
+<h2>Filter by</h2>
+<hr>
+<div [style]="filterStyle.globalStyle.style"  class="card" *ngFor="let item of categoryList">
+        <div class="title">Filter By  {{item.title}}</div>
+    <hr>
+    <div *ngIf="item.type == 'Button'">      
+        <div >
+            <div>
+                <span [style]="filterStyle.buttonStyle" class="chip" id="{{item.name}}_{{term}}"  color="primary" [selected]="curr.selected" #curr (click)="buttonChange(item.name, term,curr,item)" *ngFor="let term of item.filterTerms">{{term}}</span>
+            </div> 
+        </div>
+    </div>
+    <div *ngIf="item.type == 'Checkbox'">
+            
+            <label *ngFor="let term of item.filterTerms">
+                <input [style]="filterStyle.checkBoxStyle.style" type="checkbox"  style="margin-left: 12px;" id="{{item.name}}_{{term}}"  color="primary" [checked]="curr.selected" #curr (click)="checkBoxChange(item.name, term,curr,item.type)"  >
+                {{term}}
+            </label>
+            
+    </div>
+    <div *ngIf="item.type == 'List'" id="list-change-div">
+        <div>
+            <select [style]="filterStyle.listStyle"  (change)="listChange(item.name,$event.target.value ,curr,item.type)">
+                <option value="" [selected]="true">--Select--</option>
+                <option id="{{item.name}}_{{term}}"  color="primary" #curr [value]="term" *ngFor="let term of item.filterTerms">{{term}}</option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf="item.type == 'Date'">
+        <div>
+            <label>Choose a date</label><br>
+            <input [style]="filterStyle.dateStyle" #dateCurr type="date" (change)="dateChange(item.name, item.filterTerms[0],dateCurr,item.type)">
+        </div>
+    </div>
+</div>
