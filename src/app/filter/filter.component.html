@@ -6,7 +6,7 @@
     <div *ngIf="item.type == 'Button'">      
         <div >
             <div>
-                <span [style]="filterStyle.buttonStyle" class="chip" id="{{item.name}}_{{term}}"  color="primary" [selected]="curr.selected" #curr (click)="buttonChange(item.name, term,curr,item)" *ngFor="let term of item.filterTerms">{{term}}</span>
+                <button [style]="filterStyle.buttonStyle" class="chip" id="{{item.name}}_{{term}}"  color="primary" [selected]="curr.selected" #curr (click)="buttonChange(item.name, term,curr,item)" *ngFor="let term of item.filterTerms">{{term}}</button>
             </div> 
         </div>
     </div>

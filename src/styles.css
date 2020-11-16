@@ -18,6 +18,7 @@
 .chip{
     border-radius: 12px;
     box-sizing: border-box;
+    border: 0px;
     padding: 7px;
     border-color: #000000;
     margin: 5px;
