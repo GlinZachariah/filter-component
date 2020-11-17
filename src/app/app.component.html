@@ -2,14 +2,14 @@
   <h2>Courses List</h2>
 </div>
 <div class="card">
-  <app-filter [categoryList]="filterData" [styling]="filterStyle" (filterRule)="setRules($event)"></app-filter>
+  <app-filter *ngIf="filterData" [categoryList]="filterData" [styling]="filterStyle" (filterRule)="setRules($event)"></app-filter>
 </div>
 <div class="card" *ngIf="CourseContent">
   <div class="card" *ngFor="let item of CourseContent | filter:rulesList">
-    <span class="title">{{item.Category}}</span>
+    <span class="title">{{item.category}}</span>
     <hr>
-    <span class="chip">{{item.SubType}}</span>
-    <span class="chip">{{item.ProgressType}}</span>
-    <span class="chip">{{item.DueDate| date:'MM/dd/yyyy'}}</span>
+    <span class="chip">{{item.subType}}</span>
+    <span class="chip">{{item.progressType}}</span>
+    <span class="chip">{{item.dueDate| date:'MM/dd/yyyy'}}</span>
   </div>
 </div>

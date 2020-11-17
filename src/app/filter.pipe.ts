@@ -17,40 +17,39 @@ export class FilterPipe implements PipeTransform {
       for (let ruleIdx = 0; ruleIdx < rules.length; ruleIdx++) {
         const rule = rules[ruleIdx];
         let propNames  = Object.getOwnPropertyNames(element);
-        let propValues = Object.values(element);
-        for (let index=0;index<=propNames.length;index++) {
+        let propValues = Object.values(element);       
+        
+        for (let index=0;index<propNames.length;index++) {
           let data;
           let cond;
           if(rule.type=='Date'){
-            if(propNames[index]=="DueDate" ){
+            if(propNames[index].toLowerCase()=="DueDate".toLowerCase() ){
               data = new Date(propValues[index]).getTime();
               cond = new Date(rule.ruleCondition).getTime();
-              // let res:boolean = data == cond;
-              // let tempResultData = ["Original Data","Transformed Data","Original Condition","Transformed condition","Result"];
-              // let tempResult = [propValues[index],data,rule.ruleCondition,cond,res];
-              // console.table(tempResult,tempResultData);
             }else{
               continue;
             }
             
           }else{
-            data = propValues[index];
-            cond = rule.ruleCondition;
+            data = propValues[index].toLowerCase();
+            cond = rule.ruleCondition.toLowerCase();
           }
+          let data2= propNames[index].toLowerCase();
+          let cond2= rule.ruleName.toLowerCase();
           if(rule.matchCondition == 'EXACT_MATCH'){
-            if(propNames[index]==rule.ruleName && data==cond){
+            if(data2 === cond2 && data==cond){
               this.ob.push(element);
               ruleIdx=rules.length;
               break;
            }
           }else if(rule.matchCondition == 'LESS_THAN'){
-            if(propNames[index]==rule.ruleName && data<=cond){
+            if(data2 === cond2 && data<=cond){
               this.ob.push(element);
               ruleIdx=rules.length;
               break;
            }
           }else if(rule.matchCondition == 'MORE_THAN'){
-            if(propNames[index]==rule.ruleName && data>=cond){
+            if(data2 === cond2 && data>=cond){
               this.ob.push(element);
               ruleIdx=rules.length;
               break;
@@ -59,6 +58,8 @@ export class FilterPipe implements PipeTransform {
         }
       }
     });
+    // console.log({"RESULT":this.ob});
+    
     return this.ob;
   }
 
