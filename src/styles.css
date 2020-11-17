@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 .card{
     min-height: 75px;
+    border-radius: 12px;
     width: 100%;
     display: block;
     align-items: center;

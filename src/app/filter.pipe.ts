@@ -23,13 +23,8 @@ export class FilterPipe implements PipeTransform {
           let data;
           let cond;
           if(rule.type=='Date'){
-            if(propNames[index].toLowerCase()=="DueDate".toLowerCase() ){
-              data = new Date(propValues[index]).getTime();
-              cond = new Date(rule.ruleCondition).getTime();
-            }else{
-              continue;
-            }
-            
+            data = new Date(propValues[index]).getTime();
+            cond = new Date(rule.ruleCondition).getTime();            
           }else{
             data = propValues[index].toLowerCase();
             cond = rule.ruleCondition.toLowerCase();

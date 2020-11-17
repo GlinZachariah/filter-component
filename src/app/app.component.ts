@@ -12,6 +12,7 @@ export class AppComponent  {
   title = 'customFilter2';
   CourseContent; 
   filterData;
+  isFilterVisible:boolean=false;
   rulesList=[];
   filterStyle=GLOBALFILTERSTYLE;
   constructor(private service:MainService){
@@ -21,6 +22,10 @@ export class AppComponent  {
     this.service.getFilterData().subscribe((res)=>{
       this.filterData = res;
     });
+  }
+
+  showFilter(){
+    this.isFilterVisible= !this.isFilterVisible;
   }
 
   setRules(rulesList){

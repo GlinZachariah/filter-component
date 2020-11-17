@@ -1,7 +1,11 @@
-<div class="card">
+<div class="card heading">
   <h2>Courses List</h2>
+  <span class="space"></span>
+  <button class="filterBtn" (click)="showFilter()">
+    <img class="filterBtnImg" src="https://image.flaticon.com/icons/png/128/60/60954.png" alt="filter" >
+  </button>
 </div>
-<div class="card">
+<div class="card" *ngIf="isFilterVisible">
   <app-filter *ngIf="filterData" [categoryList]="filterData" [styling]="filterStyle" (filterRule)="setRules($event)"></app-filter>
 </div>
 <div class="card" *ngIf="CourseContent">
