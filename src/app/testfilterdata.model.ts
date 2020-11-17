@@ -19,7 +19,7 @@ export interface FilterType{
     filterTerms:Array<string>;
 }
 
-export const testFilterData:FilterType[] = [
+const testFilterData:FilterType[] = [
     {
         name:"Category",
         title:"Category",
