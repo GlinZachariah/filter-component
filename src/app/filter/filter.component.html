@@ -3,17 +3,33 @@
 <div [style]="filterStyle.globalStyle.style"  class="card" *ngFor="let item of categoryList">
         <div class="title">Filter By  {{item.title}}</div>
     <hr>
-    <div *ngIf="item.type == 'Button'">      
-        <div >
-            <div>
-                <button [style]="filterStyle.buttonStyle" class="chip" id="{{item.name}}_{{term}}"  color="primary" [selected]="curr.selected" #curr (click)="buttonChange(item.name, term,curr,item)" *ngFor="let term of item.filterTerms">{{term}}</button>
-            </div> 
-        </div>
+    <div *ngIf="item.type == 'Button'" #buttonChild>      
+             
+        <button 
+        [style]="filterStyle.buttonStyle" 
+        class="chip" 
+        id="{{item.name}}_{{term}}"  
+        color="primary" 
+        [selected]="curr.selected" 
+        [ngClass]="{'chip-selected':curr.selected}"
+        #curr 
+        (click)="buttonChange(item.name, term,curr,item,itemIdx)" 
+        *ngFor="let term of item.filterTerms;let itemIdx=index"
+        >
+        {{term}}
+        </button>
     </div>
-    <div *ngIf="item.type == 'Checkbox'">
-            
+    <div *ngIf="item.type == 'Checkbox'">           
             <label *ngFor="let term of item.filterTerms">
-                <input [style]="filterStyle.checkBoxStyle.style" type="checkbox"  style="margin-left: 12px;" id="{{item.name}}_{{term}}"  color="primary" [checked]="curr.selected" #curr (click)="checkBoxChange(item.name, term,curr,item.type)"  >
+                <input 
+                [style]="filterStyle.checkBoxStyle.style" 
+                type="checkbox"  
+                style="margin-left: 12px;" 
+                id="{{item.name}}_{{term}}"  
+                color="primary" 
+                [checked]="curr.selected" 
+                #curr 
+                (click)="checkBoxChange(item.name, term,curr,item.type)"  >
                 {{term}}
             </label>
             

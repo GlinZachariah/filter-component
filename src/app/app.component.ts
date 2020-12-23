@@ -8,33 +8,33 @@ import { MainService } from "./main.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
+export class AppComponent {
   title = 'customFilter2';
-  CourseContent; 
+  CourseContent;
   filterData;
-  isFilterVisible:boolean=false;
-  rulesList=[];
-  filterStyle=GLOBALFILTERSTYLE;
-  constructor(private service:MainService){
-    this.service.getCoursesList().subscribe((res)=>{
+  isFilterVisible: boolean = true;
+  rulesList = [];
+  filterStyle = GLOBALFILTERSTYLE;
+  constructor(private service: MainService) {
+    this.service.getCoursesList().subscribe((res) => {
       this.CourseContent = res;
     });
-    this.service.getFilterData().subscribe((res)=>{
+    this.service.getFilterData().subscribe((res) => {
       this.filterData = res;
     });
   }
 
-  showFilter(){
-    this.isFilterVisible= !this.isFilterVisible;
+  showFilter() {
+    this.isFilterVisible = !this.isFilterVisible;
   }
 
-  setRules(rulesList){
+  setRules(rulesList) {
     // console.log({rulesList:rulesList});
-    
+
     this.rulesList = rulesList;
   }
 
 
 
-  
+
 }
